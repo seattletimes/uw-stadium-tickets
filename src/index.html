@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= json.project.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Safari, you're the worst -->
+    <meta name='format-detection' content='telephone=no'>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <%= t.include("partials/_head.html") %>
+  </head>
+  <body>
+
+    <responsive-child>
+      <main class="interactive">
+        <h1>Season ticket sales drop at Husky Stadium</h1>
+        <p>When the University of Washington remodeled Husky Stadium in 2012, it expected robust sales of high-priced tickets to pay for the $260 million remodel. But since 2013, ticket sales — especially for Tyee Club and public reserved seating — has dropped.</p>
+
+        <img src="assets/WEB-uw-stadium.jpg">
+
+        <h2>Public season tickets</h2>
+        <table>
+          <thead>
+            <tr>
+              <th class="zone">Zone
+              <th class="yearly">2013
+              <th class="yearly">2016
+              <th class="yearly">+ / -
+          </thead>
+          <tbody>
+            <% csv.donor2.forEach(function(row) { %>
+            <tr>
+              <td class="zone"><%= row.zone %>
+              <td class="yearly"><%= row.year2013 %>
+              <td class="yearly"><%= row.year2016 %>
+              <td class="yearly bold"><%= row.delta %>
+            <% }) %>
+          </tbody>
+        </table>
+        <table>
+          <h2>Donor season tickets</h2>
+          <thead>
+            <tr>
+              <th class="zone">Zone
+              <th class="yearly">2013
+              <th class="yearly">2016
+              <th class="bold">+ / -
+          </thead>
+          <tbody>
+            <% csv.donor.forEach(function(row) { %>
+            <tr>
+              <td class="zone"><%= row.zone %>
+              <td class="yearly"><%= row.year2013 %>
+              <td class="yearly"><%= row.year2016 %>
+              <td class="yearly bold"><%= row.delta %>
+            <% }) %>
+          </tbody>
+        </table>
+
+        <div class="source">Sources: University of Washington Athletic Department, gohuskies.com</div>
+          <div class="credit">KELLY SHEA / THE SEATTLE TIMES</div>
+      </main>
+    </responsive-child>
+
+    <script src="app.js" async></script>
+    <% if (json.project.production) { %>
+    <%= !json.project.embedded ? t.include("partials/_foot.html") : "" %>
+    <%= t.include("partials/_workHere.html") %>
+    <% } %>
+  </body>
+</html>
