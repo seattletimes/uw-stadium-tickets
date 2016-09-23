@@ -52,10 +52,15 @@ table {
   th {
     text-align: left;
     color: @df-middle-gray;
+    border-bottom: 1px solid @df-border-gray;
   }
 
   th, td {
     padding: 4px 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: @df-off-white;
   }
 
   .yearly {
